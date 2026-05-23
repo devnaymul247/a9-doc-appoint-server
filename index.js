@@ -72,11 +72,11 @@ async function run() {
         res.json(result); // Send the result of the update back to the client
     });
 
-    app.delete('/destination/:id', async (req, res) => {
-        const id = req.params; // Get the destination ID from the URL parameters
-        const result = await destinationsCollection.deleteOne({ _id: new ObjectId(id) });
-        res.json(result); // Send the result of the deletion back to the client
-    });
+    // app.delete('/destination/:id', async (req, res) => {
+    //     const id = req.params; // Get the destination ID from the URL parameters
+    //     const result = await destinationsCollection.deleteOne({ _id: new ObjectId(id) });
+    //     res.json(result); // Send the result of the deletion back to the client
+    // });
 
     app.delete('/booking/:id', async (req, res) => {
         const id = req.params; // Get the booking ID from the URL parameters
