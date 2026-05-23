@@ -54,16 +54,16 @@ async function run() {
         res.json(doctors); 
     });
 
-    // app.get('/booking/:userId', async (req, res) => {
-    //     const userId = req.params.userId;
-    //     const bookings = await bookingsCollection.find({ userId: userId }).toArray();
-    //     res.json(bookings); // Send the list of bookings as a JSON response
-    // });
+    app.get('/booking/:userEmail', async (req, res) => {
+        const userEmailData = req.params.userEmail;
+        const bookings = await bookingsCollection.find({ userEmail: userEmailData }).toArray();
+        res.json(bookings); // Send the list of bookings as a JSON response
+    });
 
-    app.patch('/destination/:id', async (req, res) => {
-        const id = req.params; // Get the destination ID from the URL parameters
+    app.patch('/booking/:id', async (req, res) => {
+        const id = req.params; // Get the booking ID from the URL parameters
         const updateData = req.body; // Extract ID and update data from request body
-        const result = await destinationsCollection.updateOne(
+        const result = await bookingsCollection.updateOne(
             { _id: new ObjectId(id) },
             { $set: updateData }
         );
@@ -84,12 +84,12 @@ async function run() {
         res.json(result); // Send the result of the deletion back to the client
     });
 
-    app.post('/destination', async (req, res) => {
-        const destinationData = req.body; // Assuming the destination data is sent in the request body
-        // console.log(destinationData); // it will show in the terminal**
-        const result = await destinationsCollection.insertOne(destinationData);
-        res.json(result); // Send the result of the insertion back to the client
-    });
+    // app.post('/destination', async (req, res) => {
+    //     const destinationData = req.body; // Assuming the destination data is sent in the request body
+    //     // console.log(destinationData); // it will show in the terminal**
+    //     const result = await destinationsCollection.insertOne(destinationData);
+    //     res.json(result); // Send the result of the insertion back to the client
+    // });
 
     app.post('/booking', async (req, res) => {
         const bookingData = req.body; // Assuming the booking data is sent in the request body
